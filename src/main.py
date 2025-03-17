@@ -1,8 +1,8 @@
 # main.py
-from content_analyzer import ContentAnalyzer
-from ad_classifier import AdClassifier
-from matching_engine import MatchingEngine
-from privacy_layer import PrivacyLayer
+from src.content_analyzer import ContentAnalyzer
+from src.ad_classifier import AdClassifier
+from src.matching_engine import MatchingEngine
+from src.privacy_layer import PrivacyLayer
 
 
 class PrivacyAdEngine:
