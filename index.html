@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy-First Ad Engine Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #f7f9fc;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    header {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #2c3e50;
+    }
+
+    .input-section {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .results-section {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      resize: vertical;
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    .ad-item {
+      background-color: #f1f8ff;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      border-left: 4px solid #3498db;
+    }
+
+    .ad-content {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .match-reason {
+      font-size: 14px;
+      color: #7f8c8d;
+    }
+
+    .privacy-metrics {
+      background-color: #e8f5e9;
+      padding: 15px;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 20px;
+      font-style: italic;
+      color: #7f8c8d;
+    }
+
+    .sample-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .sample-button {
+      background-color: #95a5a6;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Privacy-First Ad Recommendation Engine</h1>
+      <p>Demonstrates how to deliver relevant ads without tracking personal data</p>
+    </header>
+
+    <div class="input-section">
+      <h2>Webpage Content</h2>
+      <p>Enter content to analyze:</p>
+      <textarea id="content-input" placeholder="Paste webpage content here..."></textarea>
+
+      <div class="sample-buttons">
+        <button class="sample-button" onclick="loadSampleContent('tech')">Tech Sample</button>
+        <button class="sample-button" onclick="loadSampleContent('health')">Health Sample</button>
+        <button class="sample-button" onclick="loadSampleContent('finance')">Finance Sample</button>
+      </div>
+
+      <button id="analyze-button" onclick="analyzeContent()">Analyze Content</button>
+    </div>
+
+    <div class="results-section">
+      <h2>Recommended Ads</h2>
+      <div id="results-container">
+        <p>No results yet. Enter content and click "Analyze Content".</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // API endpoint
+    const API_URL = 'http://localhost:8000/recommend';
+
+    // Sample content
+    const sampleContent = {
+      tech: `The future of artificial intelligence is transforming how we interact with technology.
+            From smart assistants to recommendation systems, AI is becoming an integral part of our daily lives.
+            However, concerns about privacy and data protection remain significant challenges in this field.
+            Companies are investing heavily in developing more advanced machine learning algorithms and neural networks.`,
+
+      health: `Maintaining a healthy lifestyle requires balanced nutrition and regular exercise.
+            Research shows that a diet rich in fruits, vegetables, and whole grains can reduce the risk of chronic diseases.
+            Physical activity, even in small amounts, can improve cardiovascular health and mental wellbeing.
+            Many healthcare providers now recommend preventive measures alongside traditional treatments.`,
+
+      finance: `Investment strategies should be tailored to individual financial goals and risk tolerance.
+            Diversification across different asset classes can help mitigate market volatility.
+            Retirement planning requires careful consideration of long-term income needs and inflation.
+            Financial advisors often recommend a mix of stocks, bonds, and alternative investments for balanced portfolios.`
+    };
+
+    // Load sample content
+    function loadSampleContent(type) {
+      document.getElementById('content-input').value = sampleContent[type];
+    }
+
+    // Analyze content
+    async function analyzeContent() {
+      const content = document.getElementById('content-input').value;
+
+      if (!content.trim()) {
+        alert('Please enter content to analyze.');
+        return;
+      }
+
+      const resultsContainer = document.getElementById('results-container');
+      resultsContainer.innerHTML = '<div class="loading">Analyzing content...</div>';
+
+      try {
+        const formData = new FormData();
+        formData.append('content', content);
+
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          throw new Error('API request failed');
+        }
+
+        const data = await response.json();
+        displayResults(data);
+      } catch (error) {
+        resultsContainer.innerHTML = `<p>Error: ${error.message}</p>`;
+      }
+    }
+
+    // Display results
+    function displayResults(data) {
+      const resultsContainer = document.getElementById('results-container');
+
+      if (!data.recommended_ads || data.recommended_ads.length === 0) {
+        resultsContainer.innerHTML = '<p>No matching ads found.</p>';
+        return;
+      }
+
+      let html = '<h3>Content Topics</h3>';
+      html += '<ul>';
+      for (const topic of data.content_topics || []) {
+        html += `<li>${topic}</li>`;
+      }
+      html += '</ul>';
+
+      html += '<h3>Matching Ads</h3>';
+      for (const match of data.recommended_ads) {
+        html += `
+                    <div class="ad-item">
+                        <div class="ad-content">${match.ad.content}</div>
+                        <div class="match-reason">Relevance: ${(match.relevance_score * 100).toFixed(1)}% - ${match.match_reason}</div>
+                    </div>
+                `;
+      }
+
+      html += '<div class="privacy-metrics">';
+      html += '<h3>Privacy Metrics</h3>';
+      html += '<ul>';
+      for (const [key, value] of Object.entries(data.privacy_metrics)) {
+        html += `<li>${key.replace(/_/g, ' ')}: ${value}</li>`;
+      }
+      html += '</ul>';
+      html += '</div>';
+
+      resultsContainer.innerHTML = html;
+    }
+  </script>
+</body>
+
+</html>
