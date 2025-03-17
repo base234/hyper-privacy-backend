@@ -1,4 +1,5 @@
 # ad_classifier.py
+# A basic ad classifier that categorizes ads
 class AdClassifier:
     def __init__(self):
         # Initialize vectorizer

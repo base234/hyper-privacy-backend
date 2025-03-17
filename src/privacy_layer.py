@@ -1,4 +1,5 @@
 # privacy_layer.py
+# A privacy layer that ensures no personal data is used
 class PrivacyLayer:
     def __init__(self):
         # Set privacy parameters

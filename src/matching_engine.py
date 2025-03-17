@@ -1,4 +1,5 @@
 # matching_engine.py
+# A matching engine that connects content to relevant ads
 class MatchingEngine:
     def __init__(self):
         # Initialize with empty ad inventory
@@ -6,7 +7,7 @@ class MatchingEngine:
 
     def add_ad(self, ad_content, ad_metadata=None):
         """Add an ad to the inventory with its classification"""
-        from .ad_classifier import AdClassifier
+        from src.ad_classifier import AdClassifier
 
         classifier = AdClassifier()
         ad_data = classifier.classify_ad(ad_content, ad_metadata)

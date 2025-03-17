@@ -1,4 +1,5 @@
 # content_analyzer.py
+# extracts keywords and topics
 class ContentAnalyzer:
     def __init__(self):
         # Initialize NLP tools
