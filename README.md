@@ -1,9 +1,11 @@
 # Privacy-First Ad Recommendation Engine
-A next-generation ad recommendation engine that delivers hyper-relevant suggestions without tracking personal data.
+A next-generation ad recommendation engine that delivers hyper-relevant suggestions leaving your personal data in your device.
 
 ## Overview
 
-This project demonstrates how to create effective ad recommendations while respecting user privacy. Traditional ad targeting relies on collecting vast amounts of personal data, creating privacy concerns. Our solution uses contextual analysis and privacy-preserving techniques to provide relevant recommendations without tracking users.
+Traditional Ad targeting relies on collecting vast amounts of data which also includes your personal data, thus creating privacy concerns.
+
+The project creates effective Ad recommendations while respecting user privacy. It uses contextual analysis and privacy-preserving techniques (Privacy Layer) to provide relevant recommendations without tracking users.
 
 ## Key Features
 
@@ -15,12 +17,7 @@ This project demonstrates how to create effective ad recommendations while respe
 - **Contextual Matching**: Match ads based on content relevance, not user behavior
 - **Transparency**: Clear explanation of how ad recommendations are made
 
-## Technology Stack
-
-- **Backend**: Python with FastAPI
-- **NLP**: spaCy for content analysis
-- **ML**: scikit-learn for feature extraction and similarity matching
-- **Frontend**: HTML/JS for demonstration
+To ensure no personal data is used.
 
 ## How It Works
 
@@ -41,15 +38,15 @@ Data processing happens on the user's device, with only anonymized features sent
 
 ### Anonymization
 
-We remove any potentially identifying information from the content analysis.
+Remove any potentially identifying information from the content analysis.
 
 ## Demo
 
-The application includes a web interface demonstrating how the system works:
+The application includes a web interface to interact with the application in a useful way, demonstrating how the system works:
 
 1. Enter webpage content
 2. See the recommended ads
-3. Understand how privacy was preserved
+3. The **relevance score** and how it **targeted the Ads**, thus shows how privacy is preserved.
 
 ## Future Scope
 
@@ -57,6 +54,13 @@ The application includes a web interface demonstrating how the system works:
 - Add more sophisticated content analysis techniques
 - Develop a browser extension for real-world testing
 - Implement encrypted computation techniques
+
+## Technology Stack
+
+- **Backend**: Python, FastAPI
+- **NLP (Natural Language Processing)**: spaCy (en_core_web_sm) for content analysis
+- **ML (Machine Learning)**: scikit-learn for feature extraction and similarity matching
+- **Frontend**: React for the interactive interface
 
 ## Getting Started with the Project
 
@@ -73,7 +77,7 @@ The application includes a web interface demonstrating how the system works:
 python -m venv venv
 ```
 
-## Activating the virtual environment on different operating systems
+## Activating the virtual environment on different OS
 ### On Windows
 ```
 source venv\Scripts\activate
@@ -100,15 +104,19 @@ python -m spacy download en_core_web_sm
 
 ---
 
-## Run the Quick Test
-From project root directory
+## Run a Quick Test? (Test)
+Wanna run a quick test to see if everything is working?
 ```
 python test.py
 ```
 
----
+## Test the API with cURL (Run from API testing server)
+Test the API endpoint
+```
+curl -X POST http://localhost:8000/recommend -d "content=The future of artificial intelligence is transforming healthcare and technology sectors, creating new opportunities for innovation while raising important questions about privacy and ethics."
+```
 
-## Run the API Server
+## Run the API Server (Actual Server)
 From project root directory
 ```
 uvicorn api.app:app --reload
@@ -116,30 +124,22 @@ uvicorn api.app:app --reload
 
 The access the API documentation at http://localhost:8000/docs
 
----
 
-## Test the API with cURL
-Test the API endpoint
-```
-curl -X POST http://localhost:8000/recommend -d "content=The future of artificial intelligence is transforming healthcare and technology sectors, creating new opportunities for innovation while raising important questions about privacy and ethics."
-```
+# Common Troubleshoot, if you run into any issues
 
----
+**Module not found errors:**
 
-# Common Troubleshooting
-
-### Module not found errors:
-
-Make sure you're running from the root directory and your virtual environment is activated.
+- Make sure you're running from the root directory
+- virtual environment (venv) is activated.
 
 
-### spaCy model errors:
+**spaCy model errors:**
 if you get errors about missing models, then run the following command:
 ```
 python -m spacy download en_core_web_sm
 ```
 
 
-### Import errors within your modules:
+**Import errors within your modules:**
 
 You might need to adjust the import paths in your Python files
