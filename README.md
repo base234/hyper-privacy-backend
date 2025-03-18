@@ -110,8 +110,8 @@ Wanna run a quick test to see if everything is working?
 python test.py
 ```
 
-## Test the API with cURL (Run from API testing server)
-Test the API endpoint
+## Test the API with cURL (Run from API testing software)
+Test the API endpoint (from API testing software) like **Postman**.
 ```
 curl -X POST http://localhost:8000/recommend -d "content=The future of artificial intelligence is transforming healthcare and technology sectors, creating new opportunities for innovation while raising important questions about privacy and ethics."
 ```
