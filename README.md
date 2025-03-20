@@ -1,5 +1,7 @@
-# Privacy-First Ad Recommendation Engine
+# Hyper Privacy Backend
 A next-generation ad recommendation engine that delivers hyper-relevant suggestions leaving your personal data in your device.
+
+Frontend: [https://github.com/base234/hyper-privacy-frontend](https://github.com/base234/hyper-privacy-frontend)
 
 ## Overview
 
