@@ -64,15 +64,23 @@ The application includes a web interface to interact with the application in a u
 - **ML (Machine Learning)**: scikit-learn for feature extraction and similarity matching
 - **Frontend**: React for the interactive interface
 
-## Getting Started with the Project
 
-### Prerequisites
+# Prerequisites
 
 - Python 3.11
 - FastAPI
 - Virtual environment (venv)
 
----
+
+# Getting Started with the Project
+### Clone the repository
+```
+git clone git@github.com:base234/hyper-privacy-backend.git
+```
+### Navigate to the project directory
+```
+cd hyper-privacy-backend
+```
 
 ### Create virtual environment
 ```
