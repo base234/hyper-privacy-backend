@@ -1,5 +1,8 @@
 # ad_classifier.py
 # A basic ad classifier that categorizes ads
+
+from data.sample_categories import get_sample_categories
+
 class AdClassifier:
     def __init__(self):
         # Initialize vectorizer
@@ -8,16 +11,7 @@ class AdClassifier:
         self.vectorizer = TfidfVectorizer(max_features=1000)
 
         # We'll use a simple categorization approach for the hackathon
-        self.categories = [
-            "technology",
-            "health",
-            "finance",
-            "education",
-            "entertainment",
-            "travel",
-            "food",
-            "fashion",
-        ]
+        self.categories = get_sample_categories()
 
     def classify_ad(self, ad_content, ad_metadata=None):
         """
