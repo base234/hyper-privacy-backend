@@ -82,13 +82,22 @@ python -m venv venv
 ```
 source venv\Scripts\activate
 ```
+```
+venv\Scripts\activate
+```
 ### On Windows (Git Bash)
 ```
 source venv\\Scripts\\activate
 ```
+```
+venv\\Scripts\\activate
+```
 ### On macOS/Linux
 ```
 source venv/bin/activate
+```
+```
+venv/bin/activate
 ```
 
 
