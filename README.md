@@ -81,6 +81,13 @@ pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 ```
 
+## Run the API Server (Actual Server)
+From project root directory
+```
+uvicorn api.app:app --reload
+```
+
+The access the API documentation at http://localhost:8000/docs
 ---
 
 ## Run a Quick Test? (Test)
@@ -95,14 +102,7 @@ Test the API endpoint (from API testing software) like **Postman**.
 curl -X POST http://localhost:8000/recommend -d "content=The future of artificial intelligence is transforming healthcare and technology sectors, creating new opportunities for innovation while raising important questions about privacy and ethics."
 ```
 
-## Run the API Server (Actual Server)
-From project root directory
-```
-uvicorn api.app:app --reload
-```
-
-The access the API documentation at http://localhost:8000/docs
-
+---
 
 # Common Troubleshoot, if you run into any issues
 
