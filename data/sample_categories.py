@@ -1,3 +1,5 @@
+# data/sample_categories.py
+
 def get_sample_categories():
     """
     Returns a list of sample ads for the hackathon demo.
