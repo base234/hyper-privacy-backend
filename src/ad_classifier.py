@@ -10,7 +10,7 @@ class AdClassifier:
 
         self.vectorizer = TfidfVectorizer(max_features=1000)
 
-        # We'll use a simple categorization approach for the hackathon
+        # Using simple categorization approach for the purpose of hackathon
         self.categories = get_sample_categories()
 
     def classify_ad(self, ad_content, ad_metadata=None):
@@ -24,6 +24,7 @@ class AdClassifier:
         Returns:
             dict: Ad classification including categories and keywords
         """
+
         # Extract keywords using TF-IDF
         if not hasattr(self, "tfidf_matrix"):
             # First time, fit the vectorizer
@@ -44,8 +45,8 @@ class AdClassifier:
             reverse=True,
         )[:10]
 
-        # For the hackathon, we'll use a simple rule-based approach for categories
-        # In a real implementation, you'd use a trained classifier
+        # Using a simple rule-based approach for categories for hackathon
+        # In a real implementation, use trained classifier
         detected_categories = []
         for category in self.categories:
             if category in ad_content.lower() or any(

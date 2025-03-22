@@ -1,4 +1,6 @@
 # src/main.py
+# Main entry point for the application
+
 from src.content_analyzer import ContentAnalyzer
 from src.ad_classifier import AdClassifier
 from src.matching_engine import MatchingEngine
@@ -12,7 +14,7 @@ class PrivacyAdEngine:
         self.matching_engine = MatchingEngine()
         self.privacy_layer = PrivacyLayer()
 
-        # Load sample ads (for hackathon demo)
+        # Load sample ads
         self._load_sample_ads()
 
     def _load_sample_ads(self):

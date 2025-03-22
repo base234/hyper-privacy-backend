@@ -108,7 +108,7 @@ class MatchingEngine:
 
         # Sort by relevance score
         matches.sort(key=lambda x: x["relevance_score"], reverse=True)
-        return matches[:5]  # Return top 5 matches
+        return matches[:10]  # Return top 5 matches
 
     def _generate_match_reason(self, ad, content_features):
         """Generate a human-readable reason for the match"""

@@ -14,7 +14,7 @@ class PrivacyLayer:
         self.epsilon = 0.5  # Differential privacy parameter (higher = less privacy but more accuracy)
         self.local_processing = True  # Ensures minimal data leaves the device
 
-        # PII patterns to detect
+        # PII re-gex patterns
         self.pii_patterns = {
             'email': re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'),
             'phone': re.compile(r'\b(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}\b'),
